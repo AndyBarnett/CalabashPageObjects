@@ -5,19 +5,19 @@ An internal repo for the calabash page object gem
 
 After defining an element with a unique name and a calabash query string that returns the element, the gem generates methods for interacting with that element.
 
-`element(:some_element, "* text:'My element'")`
+`element(:element_name, "* text:'element locator'")`
 
 
 Will generate:
 
-###some_element_when_present
-###some_element_when_not_present
-###touch_some_element
-###input_some_element
-###check_some_element
-###uncheck_some_element
-###some_element_is_checked?
-###get_text_some_element
-###look_for_some_element
-###some_element_is_present?
-###some_element_locator
+###element_name_when_present
+###element_name_when_not_present
+###element_name_is_present?
+###touch_element_name
+###input_element_name
+###check_element_name
+###uncheck_element_name
+###element_name_is_checked?
+###get_text_element_name
+###look_for_element_name
+###element_name_locator
