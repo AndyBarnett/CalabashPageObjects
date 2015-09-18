@@ -1,5 +1,6 @@
 require 'calabash-android/abase'
 require 'calabash-android/operations'
+require 'calabash-android'
 # Creating methods from the defined elements
 class CalabashAndroidBase < Calabash::ABase
   # rubocop:disable CyclomaticComplexity

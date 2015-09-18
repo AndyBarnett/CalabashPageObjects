@@ -63,6 +63,19 @@ GEM
     rack-protection (1.5.3)
       rack
     retriable (1.4.1)
+    rspec (3.3.0)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+    rspec-core (3.3.2)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-mocks (3.3.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
     rubyzip (1.1.7)
     run_loop (1.2.9)
       CFPropertyList (~> 2.2)
@@ -88,3 +101,5 @@ DEPENDENCIES
   calabash-android
   calabash-cucumber
   geminabox
+  rspec
+  rspec-expectations

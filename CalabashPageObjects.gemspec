@@ -3,6 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'CalabashPageObjects/version'
 
+
 Gem::Specification.new do |spec|
   spec.name          = 'CalabashPageObjects'
   spec.version       = CalabashPageObjects::VERSION
@@ -22,4 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "calabash-android"
   spec.add_development_dependency "calabash-cucumber"
   spec.add_development_dependency "geminabox"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rspec-expectations"
 end
