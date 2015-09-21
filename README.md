@@ -26,23 +26,24 @@ Will generate:
 ####Using the gem
 
 To use the gem from the internal gem server add
-
+```
 source 'http://gems.ict.je-labs.com:8808'
-
+```
 to the top of your gemfile and add
-
+```
 gem 'calabashpageobjects'.
-
+```
 #####Android
 To use the android framework, have your page objects require calabash-android first, then the framework, then have the page object inherit the android base class.
-
+```
 require 'calabash-android'
 require 'CalabashPageObjects'
 class PageObjectClass < CalabashAndroidBase
-
+```
 #####iOS
 To use the iOS framework, have your page objects require calabash-cucumber first, then the framework, then have the page object inherit the ios base class.
-
+```
 require 'calabash-cucumber'
 require 'CalabashPageObjects'
 class PageObjectClass < CalabashIosBase
+```
