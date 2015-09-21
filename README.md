@@ -74,16 +74,97 @@ So to run the ELEMENT_NAME_text method with defaults values for whether the elem
 which is equivalent to 
 `ELEMENT_NAME_text(timeout:15)`
 
-#####element_name_when_present
-#####element_name_when_not_present
-#####element_name_is_present?
-#####touch_element_name
-#####input_element_name
-#####check_element_name
-#####uncheck_element_name
-#####element_name_is_checked?
-#####get_text_element_name
-#####look_for_element_name
-#####element_name_locator
+###Generated Methods
+
+####element_name_when_present
+Waits for an element to be present on the screen.
+#####Args
+Can take an argument for `timeout`.  Default is 10 seconds.
+
+####element_name_when_not_present
+Waits for an element to not be present.
+#####Args
+Can take an argument for `timeout`.  Default is 10 seconds.
+
+####element_name_is_present?
+Checks to see is an element is present on the screen and returns a boolean value.
+
+This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+
+####touch_element_name
+This method taps the element.
+
+This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+
+####input_element_name
+This method clears the text in an element and then enters the text that is passed in.
+
+This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Always takes an argument for the `value` to enter into the element.
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+#####Examples
+`input_element_name('My string')` if you want to use the default options.
+`input_element_name('My string', {timeout: 15, webview: true})` if you want to override the defaults.
+
+####check_element_name
+This method will check a checkbox element.
+
+This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+####uncheck_element_name
+This method will uncheck a checkbox element.
+
+This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+
+####element_name_is_checked?
+This method will look to see is a checkbox element is checked or not and return a boolean.
+
+This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+
+####element_name_text
+This method retrieve the text attribute of an element.
+
+This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+
+####look_for_element_name
+This method looks through a screen to find an element.  By definition this method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
+#####Args
+Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `parent`. Default is nil.
+Can take an argument for `webview`. Default is false.
+
+####element_name_locator
+Will return the calabash query string that was provided when the element was defined.
+#####Args
+This method doesn't take any options.
+
+##Logging
+If a constant called `CPO_LOGGING` has been set to true, additional logging information will be printed to the console as methods are being executed.  By default it is initialised to false.
 
 
