@@ -6,8 +6,7 @@ include RSpec
 extend RSpec::Matchers
 
 RSpec.describe CalabashPageObjects do
-
-  it "android has inherited methods" do
+  it 'android has inherited methods' do
     android_page_object = AndroidPageObjectClass.new(self)
     methods = android_page_object.methods
     expect(methods).to include(:test_element_when_present)
@@ -23,7 +22,7 @@ RSpec.describe CalabashPageObjects do
     expect(methods).to include(:test_element_locator)
   end
 
-  it "ios has inherited methods" do
+  it 'ios has inherited methods' do
     ios_page_object = IosPageObjectClass.new(self)
     methods = ios_page_object.methods
     expect(methods).to include(:test_element_when_present)

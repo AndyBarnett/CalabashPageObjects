@@ -90,7 +90,7 @@ class CalabashIosBase < Calabash::IBase
 
       find(element_name, opts[:timeout], opts[:parent], opts[:webview])
       puts "Setting checkbox #{element_name} to checked..." if CPO_LOGGING
-      query("#{locator}", :setChecked => true)
+      query("#{locator}", setChecked: true)
     end
 
     define_method("uncheck_#{element_name}") do |options = {}|
@@ -98,7 +98,7 @@ class CalabashIosBase < Calabash::IBase
 
       find(element_name, opts[:timeout], opts[:parent], opts[:webview])
       puts "Setting checkbox #{element_name} to unchecked..." if CPO_LOGGING
-      query("#{locator}", :setChecked => false)
+      query("#{locator}", setChecked: false)
     end
 
     define_method("#{element_name}_checked?") do |options = {}|

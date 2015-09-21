@@ -5,5 +5,4 @@ require 'calabash-android'
 require 'calabash-cucumber'
 
 module CalabashPageObjects
-
 end
