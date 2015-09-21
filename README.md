@@ -47,7 +47,7 @@ For example the `touch_ELEMENT_NAME` method will scroll through the screen to fi
 `touch_ELEMENT_NAME(parent: action_bar_locator)`
 
 ######Best Practice
-In the example abouve, rather than passing in the calabash locator as a hardcoded string (e.g. "* text:'Hello'"), the ELEMENT_NAME_locator method has been used.  It is best practice not to have hardcoded strings strewn througout your page objects.  Instead, it is better to define the parent object like any other element and use the ELEMENT_NAME_locator method to return the string.
+In the example above, rather than passing in the calabash locator as a hardcoded string (e.g. "* text:'Hello'"), the ELEMENT_NAME_locator method has been used.  It is best practice not to have hardcoded strings strewn througout your page objects.  Instead, it is better to define the parent object like any other element and use the ELEMENT_NAME_locator method to return the string.
 
 ###Arguments
 All of the generated methods take options as a hash.  Many of the methods that are generated have defaults set for some of their arguments, as in many cases these don't need to be changed.  To override these arguments and to pass in other arguments, parameters are supplied as a hash. Some examples:
