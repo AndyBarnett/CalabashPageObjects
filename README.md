@@ -1,6 +1,5 @@
 #calabash-page-objects
 =====================
-
 An internal repo for the calabash page object gem.
 
 The calabash page object gem has two base classes that can be inherited by your page objects to provide you with stock methods for your defined elements.
