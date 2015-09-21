@@ -2,7 +2,7 @@
 =====================
 An internal repo for the calabash page object gem.
 
-The calabash page object gem has two base classes that can be inherited by your page objects to provide you with stock methods for your defined elements.
+The calabash page object gem has two base classes that can be inherited by your page objects to provide you with stock methods for your defined elements.  One is for iOS, the other is for android.
 
 For example defining an element using calabashpageobjects `element` method will provide you with methods to wait for the element, click the element, retrieve some properties of the element etc.
 
