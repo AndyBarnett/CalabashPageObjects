@@ -53,11 +53,11 @@ In this case, rather than passing in the calabash locator as a hardcodedn string
 All of the generated methods take options as a hash.  Many of the methods that are generated have defaults set for some of their arguments, as in many cases these don't need to be changed.  To override these arguments and to pass in other arguments, parameters are supplied as a hash. Some examples:
 
 The method ELEMENT_NAME_text can accept values for the timeout for the element to appear, whether the element you want is inside a parent element and whether the element is in a webview.  The defaults for these values are as follows
-
+```
 timeout: 1
 parent: nil
 webview: false
-
+```
 so to run the method for an element that should be visible inside of 1 second, that is not inside a parent element and is not inside a webview, the defaults can be used.
 
 `ELEMENT_NAME_text`
