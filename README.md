@@ -78,19 +78,19 @@ which is equivalent to
 
 ####element_name_when_present
 Waits for an element to be present on the screen.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 10 seconds.
 
 ####element_name_when_not_present
 Waits for an element to not be present.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 10 seconds.
 
 ####element_name_is_present?
 Checks to see is an element is present on the screen and returns a boolean value.
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
@@ -99,7 +99,7 @@ Can take an argument for `webview`. Default is false.
 This method taps the element.
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
@@ -108,7 +108,7 @@ Can take an argument for `webview`. Default is false.
 This method clears the text in an element and then enters the text that is passed in.
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Always takes an argument for the `value` to enter into the element.
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
@@ -121,7 +121,7 @@ Can take an argument for `webview`. Default is false.
 This method will check a checkbox element.
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
@@ -129,7 +129,7 @@ Can take an argument for `webview`. Default is false.
 This method will uncheck a checkbox element.
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
@@ -138,7 +138,7 @@ Can take an argument for `webview`. Default is false.
 This method will look to see is a checkbox element is checked or not and return a boolean.
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
@@ -147,21 +147,21 @@ Can take an argument for `webview`. Default is false.
 This method retrieve the text attribute of an element.
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
 
 ####look_for_element_name
 This method looks through a screen to find an element.  By definition this method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
-#####Args
+######Args
 Can take an argument for `timeout`.  Default is 1 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
 
 ####element_name_locator
 Will return the calabash query string that was provided when the element was defined.
-#####Args
+######Args
 This method doesn't take any options.
 
 ##Logging
