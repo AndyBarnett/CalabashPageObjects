@@ -12,9 +12,9 @@ class SharedMethods
   end
 
   def find(element_name, timeout, parent, webview)
-    puts "Looking for #{element_name} with an initial delay of #{timeout} seconds" if CPO_LOGGING
+    puts "Looking for #{element_name} with an initial delay of #{timeout} seconds." if CPO_LOGGING
     return true if send("#{element_name}_present?", timeout: timeout)
-    parent == "webview css:'*'" if webview # if looking for an element in a webview, the scroll parent is now a webview selector
+    parent = "webview css:'*'" if webview # if looking for an element in a webview, the scroll parent is now a webview selector
     element_present = false
     puts 'Element has not been found within this timeout. Scrolling...' if CPO_LOGGING
     webview ? current_screen_state = query("webview css:'*'") : current_screen_state = query('*')
