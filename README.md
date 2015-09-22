@@ -91,7 +91,7 @@ Checks to see is an element is present on the screen and returns a boolean value
 
 This method will scroll through the screen to try to locate your element if it isn't visible at the end of the timeout.
 ######Args
-Can take an argument for `timeout`.  Default is 1 second.
+Can take an argument for `timeout`.  Default is 0 second.
 Can take an argument for `parent`. Default is nil.
 Can take an argument for `webview`. Default is false.
 
