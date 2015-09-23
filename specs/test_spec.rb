@@ -11,7 +11,7 @@ RSpec.describe CalabashPageObjects do
     methods = android_page_object.methods
     expect(methods).to include(:test_element_when_present)
     expect(methods).to include(:test_element_when_not_present)
-    expect(methods).to include(:test_element_present?)
+    expect(methods).to include(:test_element_is_present?)
     expect(methods).to include(:touch_test_element)
     expect(methods).to include(:input_test_element)
     expect(methods).to include(:check_test_element)
@@ -27,7 +27,7 @@ RSpec.describe CalabashPageObjects do
     methods = ios_page_object.methods
     expect(methods).to include(:test_element_when_present)
     expect(methods).to include(:test_element_when_not_present)
-    expect(methods).to include(:test_element_present?)
+    expect(methods).to include(:test_element_is_present?)
     expect(methods).to include(:touch_test_element)
     expect(methods).to include(:input_test_element)
     expect(methods).to include(:check_test_element)
