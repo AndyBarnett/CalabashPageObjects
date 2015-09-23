@@ -70,7 +70,7 @@ module SharedMethods
       wait_for_element_does_not_exist(locator, timeout: opts[:timeout], screenshot_on_error: false)
     end
 
-    define_method("#{element_name}_present?") do |options = {}|
+    define_method("#{element_name}_is_present?") do |options = {}|
       opts = options_parser(options, timeout: 0, parent: nil, webview: false)
       find(element_name, opts[:timeout], opts[:parent], opts[:webview])
     end
