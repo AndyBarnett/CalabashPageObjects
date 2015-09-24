@@ -5,6 +5,147 @@ module SharedMethods
   # rubocop:disable NestedMethodDefinition
   CPO_LOGGING ||= false
 
+  attr_reader :locator
+
+  def initialize(locator)
+    @locator = locator
+  end
+
+  def options_parser(input_options, defaults = {})
+    if input_options.is_a?(Integer)
+      timeout_only_output_options = {}
+      timeout_only_output_options[:timeout] = input_options
+      timeout_only_output_options
+    else
+      defaults.merge(input_options)
+    end
+  end
+
+  def find(timeout, parent, webview) # parent should be an element
+    puts "Looking for element with locator #{@locator} and an initial delay of #{timeout} seconds." if CPO_LOGGING
+    return true if is_present?
+
+    parent = "webview css:'*'" if webview # if looking for an element in a webview, the scroll parent is now a webview selector
+    puts 'Element has not been found within this timeout. Scrolling...' if CPO_LOGGING
+
+    element_present = false
+    webview ? current_screen_state = query("webview css:'*'") : current_screen_state = query('*')
+    prev_screen_state = []
+
+    while !element_present && current_screen_state != prev_screen_state
+      prev_screen_state = current_screen_state
+
+      if parent.nil?
+        begin
+          puts 'Scrolling down normally' if CPO_LOGGING
+          scroll_down
+        rescue
+          puts "View is not currently scrollable after a wait of #{timeout}"
+        end
+      else
+        puts "Scrolling down parent #{parent.locator}" if CPO_LOGGING
+        scroll(parent.locator, :down)
+      end
+
+      sleep 1
+      element_present = present?
+      puts "Is element present? => #{element_present}" if CPO_LOGGING
+
+      webview ? current_screen_state = query("webview css:'*'") : current_screen_state = query('*')
+      puts 'Have reached the bottom of the screen.' if current_screen_state == prev_screen_state && CPO_LOGGING
+      puts 'Have not reached the bottom of the screen.  Retrying.' if current_screen_state != prev_screen_state && CPO_LOGGING
+    end
+
+    element_present
+  end
+
+  def element_name # need a proper name for this. It used to be just the name passed in..
+    query("#{@locator}")
+  end
+
+  def when_present(options = {})
+    opts = options_parser(options, timeout: 20)
+    puts "Waiting for element with locator #{@locator} to appear..." if CPO_LOGGING
+    wait_for_element_exists(@locator, timeout: opts[:timeout], screenshot_on_error: false)
+  end
+
+  def when_not_present(options = {})
+    opts = options_parser(options, timeout: 20)
+    puts "Waiting for element with locator #{@locator} to not be present..." if CPO_LOGGING
+    wait_for_element_does_not_exist(@locator, timeout: opts[:timeout], screenshot_on_error: false)
+  end
+
+  def is_present?(options = {})
+    opts = options_parser(options, timeout: 0, parent: nil, webview: false, scroll: false)
+    if opts[:scroll]
+      find(opts[:timeout], opts[:parent], opts[:webview])
+    else
+      puts "Checking for the presence of an element with locator #{@locator} after #{opts[:timeout]} seconds..." if CPO_LOGGING
+      begin
+        wait_for_element_exists(@locator, timeout: opts[:timeout], screenshot_on_error: false)
+        true
+      rescue
+        false
+      end
+    end
+  end
+
+  def touch(options = {})
+    opts = options_parser(options, timeout: 1, parent: nil, webview: false)
+    find(opts[:timeout], opts[:parent], opts[:webview])
+    puts "Touching an element with locator #{@locator}." if CPO_LOGGING
+    touch(@locator)
+  end
+
+  def input(value, options = {})
+    opts = options_parser(options, timeout: 1, parent: nil, webview: false)
+    find(opts[:timeout], opts[:parent], opts[:webview])
+    puts "Clearing text from element with locator #{@locator}..." if CPO_LOGGING
+    clear_text_in(@locator)
+    puts "Entering text in element with locator #{@locator}..." if CPO_LOGGING
+    enter_text(@locator, value)
+  end
+
+  def check(options = {})
+    opts = options_parser(options, timeout: 1, parent: nil, webview: false)
+
+    find(opts[:timeout], opts[:parent], opts[:webview])
+    puts "Setting checkbox with locator #{@locator} to checked..." if CPO_LOGGING
+    query("#{@locator}", setChecked: true)
+  end
+
+  def uncheck(options = {})
+    opts = options_parser(options, timeout: 1, parent: nil, webview: false)
+
+    find(opts[:timeout], opts[:parent], opts[:webview])
+    puts "Setting checkbox with locator #{@locator} to unchecked..." if CPO_LOGGING
+    query("#{@locator}", setChecked: false)
+  end
+
+  def checked?(options = {})
+    opts = options_parser(options, timeout: 1, parent: nil, webview: false)
+
+    find(opts[:timeout], opts[:parent], opts[:webview])
+    puts "Checking status of checkbox element with locator #{@locator}." if CPO_LOGGING
+    query("#{@locator}", :isChecked)
+  end
+
+  def text(options = {})
+    opts = options_parser(options, timeout: 1, parent: nil, webview: false)
+
+    find(opts[:timeout], opts[:parent], opts[:webview])
+    puts "Retrieving text from element with locator #{@locator}..." if CPO_LOGGING
+    query("#{@locator}", :text)[0]
+  end
+
+  def look_for(options = {})
+    opts = options_parser(options, timeout: 1, parent: nil, webview: false)
+
+    unless find(opts[:timeout], opts[:parent], opts[:webview])
+      fail @wait_error, "Timeout waiting for element with locator #{@locator}"
+    end
+  end
+
   def element(element_name, locator)
     define_method('options_parser') do |input_options, defaults = {}|
       if input_options.is_a?(Integer)
