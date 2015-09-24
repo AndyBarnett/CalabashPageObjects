@@ -39,7 +39,7 @@ module SharedMethods
           end
         else
           puts "Scrolling down parent #{parent}" if CPO_LOGGING
-          scroll(Send('parent_locator'), :down)
+          scroll(send('parent_locator'), :down)
         end
 
         sleep 1
