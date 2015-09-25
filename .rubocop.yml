@@ -1,0 +1,8 @@
+Metrics/LineLength:
+  Enabled: false
+
+MethodLength:
+  Enabled: false
+
+FileName:
+  Enabled: false
