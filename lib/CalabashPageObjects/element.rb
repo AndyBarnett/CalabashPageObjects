@@ -5,6 +5,7 @@ class Element
 
   def initialize(locator)
     @locator = locator
+    # How do I give this class access to the calabash methods so it can actually do stuff???
   end
 
   def options_parser(input_options, defaults = {})
@@ -100,7 +101,7 @@ class Element
   # Can take an argument for timeout.  Default is 1 second
   # Can take an argument for parent.  Default is nil.
   # Can take an argument for webview.  Default is false.
-  def touch(options = {})
+  def touch_element(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
     new_find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Touching an element with locator #{@locator}." if CPO_LOGGING
