@@ -41,7 +41,12 @@ class Element
         end
       else
         puts "Scrolling down parent #{parent.locator}" if CPO_LOGGING
-        scroll(parent.locator, :down)
+        # As we are using the parent variable here for webviews and other elements we need to check which is which.
+        if parent.methods.include?('locator')
+          scroll(parent.locator, :down)
+        else
+          scroll(parent, :down)
+        end
       end
 
       sleep 1
