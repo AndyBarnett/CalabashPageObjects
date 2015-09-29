@@ -15,4 +15,14 @@ RSpec.describe CalabashPageObjects do
     ios_page_object = IosPageObjectClass.new(self)
     ios_page_object.try_all_methods
   end
+
+  it 'old style android works' do
+    old_android_style = OldAndroidPageObject.new(self)
+    old_android_style.test_method
+  end
+
+  it 'old style ios works' do
+    old_android_style = OldIosPageObject.new(self)
+    old_android_style.test_method
+  end
 end

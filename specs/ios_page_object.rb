@@ -22,7 +22,7 @@ class IosPageObjectClass < CalabashPageObjectBase
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265) (Errno::ECONNREFUSED)'
     end
     begin
-      @my_element.is_present?
+      @my_element.present?
     rescue Errno::ECONNREFUSED => e
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265)'
     end
@@ -61,5 +61,16 @@ class IosPageObjectClass < CalabashPageObjectBase
     rescue Errno::ECONNREFUSED => e
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265)'
     end
+  end
+end
+
+require 'calabash-cucumber'
+require 'calabash-cucumber/ibase'
+class OldIosPageObject < CalabashIosBase
+  element(:test, "string")
+
+  def test_method
+    methods = self.methods.select{|x| x =~ /when/}
+    fail unless methods.size > 0
   end
 end

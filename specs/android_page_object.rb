@@ -22,7 +22,7 @@ class AndroidPageObjectClass < CalabashPageObjectBase
       raise unless e.message == 'No connected devices (RuntimeError)'
     end
     begin
-      @my_element.is_present?
+      @my_element.present?
     rescue RuntimeError => e
       raise unless e.message == 'No connected devices'
     end
@@ -61,5 +61,16 @@ class AndroidPageObjectClass < CalabashPageObjectBase
     rescue RuntimeError => e
       raise unless e.message == 'No connected devices'
     end
+  end
+end
+
+require 'calabash-android'
+require 'calabash-android/abase'
+class OldAndroidPageObject < CalabashAndroidBase
+  element(:test, "string")
+
+  def test_method
+    methods = self.methods.select{|x| x =~ /when/}
+    fail unless methods.size > 0
   end
 end

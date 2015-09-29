@@ -1,4 +1,4 @@
-class SharedMethods
+module SharedMethods
   # rubocop:disable CyclomaticComplexity
   # rubocop:disable PerceivedComplexity
   # rubocop:disable AbcSize

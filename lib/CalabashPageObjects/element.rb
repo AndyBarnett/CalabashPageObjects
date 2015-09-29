@@ -20,7 +20,7 @@ class Element
 
   def find(timeout, parent, webview) # parent should be an element
     puts "Looking for element with locator #{@locator} and an initial delay of #{timeout} seconds." if CPO_LOGGING
-    return true if is_present?
+    return true if present?
 
     parent = "webview css:'*'" if webview # if looking for an element in a webview, the scroll parent is now a webview selector
     puts 'Element has not been found within this timeout. Scrolling...' if CPO_LOGGING
@@ -82,7 +82,7 @@ class Element
   # Can take an argument for parent.  Default is nil
   # Can take an argument for webview.  Default is false
   # Can take an argument for scroll.  Default is false
-  def is_present?(options = {})
+  def present?(options = {})
     opts = options_parser(options, timeout: 0, parent: nil, webview: false, scroll: false)
     if opts[:scroll]
       find(opts[:timeout], opts[:parent], opts[:webview])
