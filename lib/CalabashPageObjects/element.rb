@@ -18,7 +18,7 @@ class Element
     end
   end
 
-  def new_find(timeout, parent, webview) # parent should be an element
+  def find(timeout, parent, webview) # parent should be an element
     puts "Looking for element with locator #{@locator} and an initial delay of #{timeout} seconds." if CPO_LOGGING
     return true if is_present?
 
@@ -85,7 +85,7 @@ class Element
   def is_present?(options = {})
     opts = options_parser(options, timeout: 0, parent: nil, webview: false, scroll: false)
     if opts[:scroll]
-      new_find(opts[:timeout], opts[:parent], opts[:webview])
+      find(opts[:timeout], opts[:parent], opts[:webview])
     else
       puts "Checking for the presence of an element with locator #{@locator} after #{opts[:timeout]} seconds..." if CPO_LOGGING
       begin
@@ -101,9 +101,9 @@ class Element
   # Can take an argument for timeout.  Default is 1 second
   # Can take an argument for parent.  Default is nil.
   # Can take an argument for webview.  Default is false.
-  def touch_element(options = {})
+  def prod(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
-    new_find(opts[:timeout], opts[:parent], opts[:webview])
+    find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Touching an element with locator #{@locator}." if CPO_LOGGING
     touch(@locator)
   end
@@ -115,7 +115,7 @@ class Element
   # Can take an argument for webview. Default is false.
   def input(value, options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
-    new_find(opts[:timeout], opts[:parent], opts[:webview])
+    find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Clearing text from element with locator #{@locator}..." if CPO_LOGGING
     clear_text_in(@locator)
     puts "Entering text in element with locator #{@locator}..." if CPO_LOGGING
@@ -129,7 +129,7 @@ class Element
   def check(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
 
-    new_find(opts[:timeout], opts[:parent], opts[:webview])
+    find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Setting checkbox with locator #{@locator} to checked..." if CPO_LOGGING
     query("#{@locator}", setChecked: true)
   end
@@ -141,7 +141,7 @@ class Element
   def uncheck(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
 
-    new_find(opts[:timeout], opts[:parent], opts[:webview])
+    find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Setting checkbox with locator #{@locator} to unchecked..." if CPO_LOGGING
     query("#{@locator}", setChecked: false)
   end
@@ -153,7 +153,7 @@ class Element
   def checked?(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
 
-    new_find(opts[:timeout], opts[:parent], opts[:webview])
+    find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Checking status of checkbox element with locator #{@locator}." if CPO_LOGGING
     query("#{@locator}", :isChecked)
   end
@@ -165,7 +165,7 @@ class Element
   def text(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
 
-    new_find(opts[:timeout], opts[:parent], opts[:webview])
+    find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Retrieving text from element with locator #{@locator}..." if CPO_LOGGING
     query("#{@locator}", :text)[0]
   end
@@ -177,10 +177,10 @@ class Element
   def look_for(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
 
-    unless new_find(opts[:timeout], opts[:parent], opts[:webview])
+    unless find(opts[:timeout], opts[:parent], opts[:webview])
       fail @wait_error, "Timeout waiting for element with locator #{@locator}"
     end
   end
 
-  private :new_find, :options_parser
+  private :find, :options_parser
 end

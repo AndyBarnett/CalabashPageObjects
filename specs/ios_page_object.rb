@@ -27,7 +27,7 @@ class IosPageObjectClass < CalabashPageObjectBase
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265)'
     end
     begin
-      @my_element.touch_element
+      @my_element.prod
     rescue Errno::ECONNREFUSED => e
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265)'
     end

@@ -27,7 +27,7 @@ class AndroidPageObjectClass < CalabashPageObjectBase
       raise unless e.message == 'No connected devices'
     end
     begin
-      @my_element.touch_element
+      @my_element.prod
     rescue RuntimeError => e
       raise unless e.message == 'No connected devices'
     end
