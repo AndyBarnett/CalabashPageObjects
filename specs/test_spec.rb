@@ -11,8 +11,8 @@ RSpec.describe CalabashPageObjects do
     android_page_object.try_all_methods
   end
 
-   it 'ios has inherited methods' do
-     ios_page_object = IosPageObjectClass.new(self)
-     ios_page_object.try_all_methods
-   end
+  it 'ios has inherited methods' do
+    ios_page_object = IosPageObjectClass.new(self)
+    ios_page_object.try_all_methods
+  end
 end

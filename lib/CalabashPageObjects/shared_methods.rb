@@ -18,7 +18,7 @@ class SharedMethods
 
     define_method('find') do |element_name, timeout, parent, webview|
       puts "Looking for #{element_name} with an initial delay of #{timeout} seconds." if CPO_LOGGING
-      return true if send("#{element_name}_is_present?", {timeout: timeout, scroll: false})
+      return true if send("#{element_name}_is_present?", timeout: timeout, scroll: false)
 
       parent = "webview css:'*'" if webview # if looking for an element in a webview, the scroll parent is now a webview selector
       puts 'Element has not been found within this timeout. Scrolling...' if CPO_LOGGING
