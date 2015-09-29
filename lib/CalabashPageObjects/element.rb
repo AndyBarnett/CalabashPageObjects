@@ -9,7 +9,7 @@ class Element
   end
 
   def options_parser(input_options, defaults = {})
-    if input_options.is_a?(Integer)
+    if input_options.is_a?(Integer) || input_options.is_a?(Float)
       timeout_only_output_options = {}
       timeout_only_output_options[:timeout] = input_options
       timeout_only_output_options
@@ -18,12 +18,12 @@ class Element
     end
   end
 
-  def find(timeout, parent, webview) # parent should be an element
-    puts "Looking for element with locator #{@locator} and an initial delay of #{timeout} seconds." if CPO_LOGGING
-    return true if present?
+  def find(initial_delay, parent, webview) # parent should be an element
+    puts "Looking for element with locator #{@locator} and an initial delay of #{initial_delay} seconds." if CPO_LOGGING
+    return true if present?(initial_delay)
 
     parent = "webview css:'*'" if webview # if looking for an element in a webview, the scroll parent is now a webview selector
-    puts 'Element has not been found within this timeout. Scrolling...' if CPO_LOGGING
+    puts 'Element has not been found within this initial_delay. Scrolling...' if CPO_LOGGING
 
     element_present = false
     webview ? current_screen_state = query("webview css:'*'") : current_screen_state = query('*')
@@ -37,7 +37,7 @@ class Element
           puts 'Scrolling down normally' if CPO_LOGGING
           scroll_down
         rescue
-          puts "View is not currently scrollable after a wait of #{timeout}"
+          puts "View is not currently scrollable after a wait of #{initial_delay}"
         end
       else
         puts "Scrolling down parent #{parent.locator}" if CPO_LOGGING
@@ -62,23 +62,23 @@ class Element
   end
 
   # Waits for an element to be present.
-  # Can take an argument for timeout. Default is 10 seconds.
-  def when_present(options = {})
+  # Can take an argument for initial_delay. Default is 10 seconds.
+  def when_visible(options = {})
     opts = options_parser(options, timeout: 10)
     puts "Waiting for element with locator #{@locator} to appear..." if CPO_LOGGING
     wait_for_element_exists(@locator, timeout: opts[:timeout], screenshot_on_error: false)
   end
 
   # Waits for an element to not be present.
-  # Can take an argument for timeout. Default is 10 seconds.
-  def when_not_present(options = {})
+  # Can take an argument for initial_delay. Default is 10 seconds.
+  def when_not_visible(options = {})
     opts = options_parser(options, timeout: 10)
     puts "Waiting for element with locator #{@locator} to not be present..." if CPO_LOGGING
     wait_for_element_does_not_exist(@locator, timeout: opts[:timeout], screenshot_on_error: false)
   end
 
-  # Checks to see if the element is currently visible.
-  # Can take an argument for timeout. Default is 0
+  # Checks to see if the element is present.  Can scroll to find the element or not.
+  # Can take an argument for initial_delay. Default is 0
   # Can take an argument for parent.  Default is nil
   # Can take an argument for webview.  Default is false
   # Can take an argument for scroll.  Default is false
@@ -98,7 +98,7 @@ class Element
   end
 
   # Taps the element.
-  # Can take an argument for timeout.  Default is 1 second
+  # Can take an argument for initial_delay.  Default is 1 second
   # Can take an argument for parent.  Default is nil.
   # Can take an argument for webview.  Default is false.
   def prod(options = {})
@@ -110,7 +110,7 @@ class Element
 
   # Clears the text in an element and then enters the text that is passed in.
   # Always takes an argument for value.
-  # Can take an argument for timeout.  Default is 1 second.
+  # Can take an argument for initial_delay.  Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def input(value, options = {})
@@ -123,7 +123,7 @@ class Element
   end
 
   # Check a checkbox element.
-  # Can take an argument for timeout.  Default is 1 second.
+  # Can take an argument for initial_delay.  Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def check(options = {})
@@ -135,7 +135,7 @@ class Element
   end
 
   # Uncheck a checkbox element.
-  # Can take an argument for timeout.  Default is 1 second.
+  # Can take an argument for initial_delay.  Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def uncheck(options = {})
@@ -147,7 +147,7 @@ class Element
   end
 
   # Find the checked status of a checkbox element.
-  # Can take an argument for timeout.  Default is 1 second.
+  # Can take an argument for initial_delay.  Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def checked?(options = {})
@@ -159,7 +159,7 @@ class Element
   end
 
   # Retrieve the text attribute of an element.
-  # Can take an argument for timeout.  Default is 1 second.
+  # Can take an argument for initial_delay.  Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def text(options = {})
@@ -170,8 +170,8 @@ class Element
     query("#{@locator}", :text)[0]
   end
 
-  # Search the screen for an element.
-  # Can take an argument for timeout.  Default is 1 second.
+  # Search the whole screen for an element.
+  # Can take an argument for initial_delay.  Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def look_for(options = {})

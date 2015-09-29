@@ -8,16 +8,18 @@ class AndroidPageObjectClass < CalabashPageObjectBase
   def try_all_methods
     begin
       @my_element.screen_query
+      @my_element.touch('asdf')
+
     rescue RuntimeError => e
       raise unless e.message == 'No connected devices'
     end
     begin
-      @my_element.when_present
+      @my_element.when_visible
     rescue RuntimeError => e
       raise unless e.message == 'No connected devices (RuntimeError)'
     end
     begin
-      @my_element.when_not_present
+      @my_element.when_not_visible
     rescue RuntimeError => e
       raise unless e.message == 'No connected devices (RuntimeError)'
     end

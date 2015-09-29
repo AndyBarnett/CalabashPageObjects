@@ -9,7 +9,7 @@ class CalabashPageObjectBase
 
   def method_missing(name, *args, &block)
     if world.nil?
-      puts 'World has not been set in the base class.  Pleas check you have added super(world) to your page objects constructor.'
+      puts 'World has not been set in the base class.  Please check you have added super(world) to your page objects constructor.'
       throw ArgumentError
     end
 
