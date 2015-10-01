@@ -42,15 +42,14 @@ class Element
       else
         puts "Scrolling down parent #{parent.locator}" if CPO_LOGGING
         # As we are using the parent variable here for webviews and other elements we need to check which is which.
-        if parent.methods.include?('locator')
+        unless parent.is_a?(String)
           scroll(parent.locator, :down)
         else
           scroll(parent, :down)
         end
       end
 
-      sleep 1
-      element_present = present?
+      element_present = present?(0.4)
       puts "Is element present? => #{element_present}" if CPO_LOGGING
 
       webview ? current_screen_state = query("webview css:'*'") : current_screen_state = query('*')
