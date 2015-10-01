@@ -22,7 +22,7 @@ class Element
     puts "Looking for element with locator #{@locator} and an initial delay of #{initial_delay} seconds." if CPO_LOGGING
     return true if present?(initial_delay)
 
-    parent = "webview css:'*'" if webview # if looking for an element in a webview, the scroll parent is now a webview selector
+    parent = 'webview' if webview # if looking for an element in a webview, the scroll parent is now a webview selector
     puts 'Element has not been found within this initial_delay. Scrolling...' if CPO_LOGGING
 
     element_present = false
