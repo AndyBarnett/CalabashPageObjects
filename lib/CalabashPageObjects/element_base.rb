@@ -1,4 +1,10 @@
-class Element
+require_relative 'element_base_option_parser'
+require_relative 'element_finder'
+# The main class for functionality for defined elements.
+class ElementBase
+  include ElementBaseOptionParser
+  include ElementFinder
+
   attr_reader :locator
 
   CPO_LOGGING ||= false
@@ -6,58 +12,6 @@ class Element
   def initialize(locator)
     @locator = locator
     # How do I give this class access to the calabash methods so it can actually do stuff???
-  end
-
-  def options_parser(input_options, defaults = {})
-    if input_options.is_a?(Integer) || input_options.is_a?(Float)
-      timeout_only_output_options = {}
-      timeout_only_output_options[:timeout] = input_options
-      timeout_only_output_options
-    else
-      defaults.merge(input_options)
-    end
-  end
-
-  def find(initial_delay, parent, webview) # parent should be an element
-    puts "Looking for element with locator #{@locator} and an initial delay of #{initial_delay} seconds." if CPO_LOGGING
-    return true if present?(initial_delay)
-
-    parent = 'webview' if webview # if looking for an element in a webview, the scroll parent is now a webview selector
-    puts 'Element has not been found within this initial_delay. Scrolling...' if CPO_LOGGING
-
-    element_present = false
-    webview ? current_screen_state = query("webview css:'*'") : current_screen_state = query('*')
-    prev_screen_state = []
-
-    while !element_present && current_screen_state != prev_screen_state
-      prev_screen_state = current_screen_state
-
-      if parent.nil?
-        begin
-          puts 'Scrolling down normally' if CPO_LOGGING
-          scroll_down
-        rescue
-          puts "View is not currently scrollable after a wait of #{initial_delay}"
-        end
-      else
-        puts "Scrolling down parent #{parent.locator}" if CPO_LOGGING
-        # As we are using the parent variable here for webviews and other elements we need to check which is which.
-        unless parent.is_a?(String)
-          scroll(parent.locator, :down)
-        else
-          scroll(parent, :down)
-        end
-      end
-
-      element_present = present?(0.4)
-      puts "Is element present? => #{element_present}" if CPO_LOGGING
-
-      webview ? current_screen_state = query("webview css:'*'") : current_screen_state = query('*')
-      puts 'Have reached the bottom of the screen.' if current_screen_state == prev_screen_state && CPO_LOGGING
-      puts 'Have not reached the bottom of the screen.  Retrying.' if current_screen_state != prev_screen_state && CPO_LOGGING
-    end
-
-    element_present
   end
 
   # Queries the current screen using the elements locator.
@@ -87,7 +41,7 @@ class Element
   # Can take an argument for webview.  Default is false
   # Can take an argument for scroll.  Default is false
   def present?(options = {})
-    opts = options_parser(options, timeout: 0, parent: nil, webview: false, scroll: false)
+    opts = options_parser(options, timeout: 0.1, parent: nil, webview: false, scroll: false)
     if opts[:scroll]
       find(opts[:timeout], opts[:parent], opts[:webview])
     else
@@ -180,11 +134,6 @@ class Element
   # Can take an argument for webview. Default is false.
   def look_for(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
-
-    unless find(opts[:timeout], opts[:parent], opts[:webview])
-      fail @wait_error, "Timeout waiting for element with locator #{@locator}"
-    end
+    fail @wait_error, "Timeout waiting for element with locator #{@locator}" unless find(opts[:timeout], opts[:parent], opts[:webview])
   end
-
-  private :find, :options_parser
 end

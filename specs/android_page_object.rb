@@ -1,5 +1,9 @@
 require 'CalabashPageObjects'
+# Page object for tests.
 class AndroidPageObjectClass < CalabashPageObjectBase
+  # rubocop:disable CyclomaticComplexity
+  # rubocop:disable PerceivedComplexity
+  # rubocop:disable AbcSize
   def initialize(world)
     @my_element = AElement.new("* text:'ggg'")
     super(world)
@@ -63,16 +67,5 @@ class AndroidPageObjectClass < CalabashPageObjectBase
     rescue RuntimeError => e
       raise unless e.message == 'No connected devices'
     end
-  end
-end
-
-require 'calabash-android'
-require 'calabash-android/abase'
-class OldAndroidPageObject < CalabashAndroidBase
-  element(:test, "string")
-
-  def test_method
-    methods = self.methods.select{|x| x =~ /when/}
-    fail unless methods.size > 0
   end
 end

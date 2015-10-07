@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    CalabashPageObjects (0.2.4)
+    CalabashPageObjects (0.3.1)
 
 GEM
   remote: https://rubygems.org/

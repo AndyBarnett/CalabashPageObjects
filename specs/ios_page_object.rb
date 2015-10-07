@@ -1,5 +1,9 @@
 require 'CalabashPageObjects'
+# Page object for tests.
 class IosPageObjectClass < CalabashPageObjectBase
+  # rubocop:disable CyclomaticComplexity
+  # rubocop:disable PerceivedComplexity
+  # rubocop:disable AbcSize
   def initialize(world)
     @my_element = IElement.new("* text:'ggg'")
     super(world)
@@ -61,16 +65,5 @@ class IosPageObjectClass < CalabashPageObjectBase
     rescue Errno::ECONNREFUSED => e
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265)'
     end
-  end
-end
-
-require 'calabash-cucumber'
-require 'calabash-cucumber/ibase'
-class OldIosPageObject < CalabashIosBase
-  element(:test, "string")
-
-  def test_method
-    methods = self.methods.select{|x| x =~ /when/}
-    fail unless methods.size > 0
   end
 end

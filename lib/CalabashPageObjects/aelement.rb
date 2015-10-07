@@ -1,4 +1,5 @@
-class AElement < Element
+# The android specific implementation of ElementBase.
+class AElement < ElementBase
   include Calabash::Android::WaitHelpers
   include Calabash::Android::Operations
 

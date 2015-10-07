@@ -1,4 +1,5 @@
-class IElement < Element
+# The ios specific implementation of ElementBase.
+class IElement < ElementBase
   include Calabash::Cucumber::Core
   include Calabash::Cucumber::WaitHelpers
   def initialize(*args)

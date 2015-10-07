@@ -1,3 +1,4 @@
+# The base for page objects.  Allows for any missing methods to be sent up the stack.
 class CalabashPageObjectBase
   attr_accessor :world
 
