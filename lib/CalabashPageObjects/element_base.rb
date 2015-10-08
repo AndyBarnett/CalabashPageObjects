@@ -36,12 +36,12 @@ class ElementBase
   end
 
   # Checks to see if the element is present.  Can scroll to find the element or not.
-  # Can take an argument for initial_delay. Default is 0
+  # Can take an argument for initial_delay. Default is 0.1 as 0 can cause calabash to hang.
   # Can take an argument for parent.  Default is nil
   # Can take an argument for webview.  Default is false
   # Can take an argument for scroll.  Default is false
   def present?(options = {})
-    opts = options_parser(options, timeout: 0.1, parent: nil, webview: false, scroll: false)
+    opts = options_parser(options, timeout: 0.5, parent: nil, webview: false, scroll: false)
     if opts[:scroll]
       find(opts[:timeout], opts[:parent], opts[:webview])
     else
