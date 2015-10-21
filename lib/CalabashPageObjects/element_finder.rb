@@ -26,11 +26,12 @@ module ElementFinder
           puts "View is not currently scrollable after a wait of #{initial_delay}"
         end
       else
-        puts "Scrolling down parent #{parent.locator}" if CPO_LOGGING
         # As we are using the parent variable here for webviews and other elements we need to check which is which.
         unless parent.is_a?(String)
+          puts "Scrolling down. parent #{parent.locator}" if CPO_LOGGING
           scroll(parent.locator, :down)
         else
+          puts "Scrolling down. parent #{parent}" if CPO_LOGGING
           scroll(parent, :down)
         end
       end
