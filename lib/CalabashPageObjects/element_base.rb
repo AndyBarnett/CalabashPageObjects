@@ -62,6 +62,7 @@ class ElementBase
   def prod(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
     find(opts[:timeout], opts[:parent], opts[:webview])
+    sleep 0.1
     puts "Touching an element with locator #{@locator}." if CPO_LOGGING
     touch(@locator)
   end

@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.6'
-  spec.add_development_dependency 'calabash-android'
+  spec.add_development_dependency 'calabash-android', '>=0.5.14'
   spec.add_development_dependency 'calabash-cucumber'
   spec.add_development_dependency 'geminabox'
   spec.add_development_dependency 'rspec'
