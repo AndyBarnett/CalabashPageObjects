@@ -7,12 +7,12 @@ extend RSpec::Matchers
 
 RSpec.describe CalabashPageObjects do
   it 'android has inherited methods' do
-    android_page_object = AndroidPageObjectClass.new(self)
+    android_page_object = AndroidPageObjectClass.new
     android_page_object.try_all_methods
   end
 
   it 'ios has inherited methods' do
-    ios_page_object = IosPageObjectClass.new(self)
+    ios_page_object = IosPageObjectClass.new
     ios_page_object.try_all_methods
   end
 end

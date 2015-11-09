@@ -1,12 +1,11 @@
 require 'CalabashPageObjects'
 # Page object for tests.
-class AndroidPageObjectClass < CalabashPageObjectBase
+class AndroidPageObjectClass
   # rubocop:disable CyclomaticComplexity
   # rubocop:disable PerceivedComplexity
   # rubocop:disable AbcSize
-  def initialize(world)
+  def initialize
     @my_element = AElement.new("* text:'ggg'")
-    super(world)
   end
 
   def try_all_methods
@@ -20,12 +19,12 @@ class AndroidPageObjectClass < CalabashPageObjectBase
     begin
       @my_element.when_visible
     rescue RuntimeError => e
-      raise unless e.message == 'No connected devices (RuntimeError)'
+      raise unless e.message == 'No connected devices'
     end
     begin
       @my_element.when_not_visible
     rescue RuntimeError => e
-      raise unless e.message == 'No connected devices (RuntimeError)'
+      raise unless e.message == 'No connected devices'
     end
     begin
       @my_element.present?

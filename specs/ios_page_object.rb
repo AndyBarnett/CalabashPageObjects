@@ -1,12 +1,11 @@
 require 'CalabashPageObjects'
 # Page object for tests.
-class IosPageObjectClass < CalabashPageObjectBase
+class IosPageObjectClass
   # rubocop:disable CyclomaticComplexity
   # rubocop:disable PerceivedComplexity
   # rubocop:disable AbcSize
-  def initialize(world)
+  def initialize
     @my_element = IElement.new("* text:'ggg'")
-    super(world)
   end
 
   def try_all_methods
@@ -21,7 +20,7 @@ class IosPageObjectClass < CalabashPageObjectBase
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265) (Errno::ECONNREFUSED)'
     end
     begin
-      @my_element.when_not_present
+      @my_element.when_not_visible
     rescue RuntimeError => e
       raise unless e.message == 'Connection refused - connect(2) (http://localhost:37265) (Errno::ECONNREFUSED)'
     end
