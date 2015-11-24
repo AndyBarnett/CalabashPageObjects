@@ -9,7 +9,7 @@ class IElement < ElementBase
     super(*args)
   end
 
-  # Need to override the method in the Element class as this one has a weird name in the iOS libs.
+  # Need to override the method in the Element class as this one has a different name in the iOS libs.
   # Waits for an element to not be present.
   # Can take an argument for timeout. Default is 10 seconds.
   def when_not_visible(options = {})

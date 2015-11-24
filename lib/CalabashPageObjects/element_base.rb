@@ -9,37 +9,38 @@ class ElementBase
 
   CPO_LOGGING ||= false
 
+  # Constructor for ElementBase.
+  # Takes an argument for the Calabash Query that locates the object.
   def initialize(locator)
     @locator = locator
-    # How do I give this class access to the calabash methods so it can actually do stuff???
   end
 
   # Queries the current screen using the elements locator.
-  def screen_query # need a proper name for this. It used to be just the name passed in..
+  def screen_query
     query("#{@locator}")
   end
 
-  # Waits for an element to be present.
-  # Can take an argument for initial_delay. Default is 10 seconds.
+  # Waits for an element to be visible on the current screen.
+  # Can take an argument for timeout. Default is 10 seconds.
   def when_visible(options = {})
     opts = options_parser(options, timeout: 10)
     puts "Waiting for element with locator #{@locator} to appear..." if CPO_LOGGING
     wait_for_element_exists(@locator, timeout: opts[:timeout], screenshot_on_error: false)
   end
 
-  # Waits for an element to not be present.
-  # Can take an argument for initial_delay. Default is 10 seconds.
+  # Waits for an element to not be visible on the current screen.
+  # Can take an argument for timeout. Default is 10 seconds.
   def when_not_visible(options = {})
     opts = options_parser(options, timeout: 10)
     puts "Waiting for element with locator #{@locator} to not be present..." if CPO_LOGGING
     wait_for_element_does_not_exist(@locator, timeout: opts[:timeout], screenshot_on_error: false)
   end
 
-  # Checks to see if the element is present.  Can scroll to find the element or not.
-  # Can take an argument for initial_delay. Default is 0.1 as 0 can cause calabash to hang.
-  # Can take an argument for parent.  Default is nil
-  # Can take an argument for webview.  Default is false
-  # Can take an argument for scroll.  Default is false
+  # Checks to see if the element is present. Can optionally scroll down to try and find the element.
+  # Can take an argument for timeout. Default is 0.5 as 0 can cause calabash to hang.
+  # Can take an argument for parent. Default is nil
+  # Can take an argument for webview. Default is false
+  # Can take an argument for scroll. Default is false
   def present?(options = {})
     opts = options_parser(options, timeout: 0.5, parent: nil, webview: false, scroll: false)
     if opts[:scroll]
@@ -56,9 +57,9 @@ class ElementBase
   end
 
   # Taps the element.
-  # Can take an argument for initial_delay.  Default is 1 second
-  # Can take an argument for parent.  Default is nil.
-  # Can take an argument for webview.  Default is false.
+  # Can take an argument for timeout. Default is 1 second
+  # Can take an argument for parent. Default is nil.
+  # Can take an argument for webview. Default is false.
   def prod(options = {})
     opts = options_parser(options, timeout: 1, parent: nil, webview: false)
     find(opts[:timeout], opts[:parent], opts[:webview])
@@ -67,9 +68,9 @@ class ElementBase
     touch(@locator)
   end
 
-  # Clears the text in an element and then enters the text that is passed in.
-  # Always takes an argument for value.
-  # Can take an argument for initial_delay.  Default is 1 second.
+  # Clears the text in an element and then enters the text that is passed into the method.
+  # Always takes an argument for 'value'.
+  # Can take an argument for timeout. Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def input(value, options = {})
@@ -81,8 +82,8 @@ class ElementBase
     enter_text(@locator, value)
   end
 
-  # Check a checkbox element.
-  # Can take an argument for initial_delay.  Default is 1 second.
+  # Set a checkbox element to 'checked' state.
+  # Can take an argument for timeout. Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def check(options = {})
@@ -93,8 +94,8 @@ class ElementBase
     query("#{@locator}", setChecked: true)
   end
 
-  # Uncheck a checkbox element.
-  # Can take an argument for initial_delay.  Default is 1 second.
+  # Set a checkbox element to 'unchecked' state.
+  # Can take an argument for timeout. Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def uncheck(options = {})
@@ -106,7 +107,7 @@ class ElementBase
   end
 
   # Find the checked status of a checkbox element.
-  # Can take an argument for initial_delay.  Default is 1 second.
+  # Can take an argument for timeout. Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def checked?(options = {})
@@ -118,7 +119,7 @@ class ElementBase
   end
 
   # Retrieve the text attribute of an element.
-  # Can take an argument for initial_delay.  Default is 1 second.
+  # Can take an argument for timeout. Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def text(options = {})
@@ -129,8 +130,8 @@ class ElementBase
     query("#{@locator}", :text)[0]
   end
 
-  # Search the whole screen for an element.
-  # Can take an argument for initial_delay.  Default is 1 second.
+  # Search the whole screen for an element, scrolling down if it doesn't find it after the timeout.
+  # Can take an argument for timeout. Default is 1 second.
   # Can take an argument for parent. Default is nil.
   # Can take an argument for webview. Default is false.
   def look_for(options = {})
