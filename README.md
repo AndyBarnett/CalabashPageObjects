@@ -20,12 +20,12 @@ gem 'CalabashPageObjects'
 
 ##Defining Elements
 
-There are two different types of element made available in the gem, IElement (for iOS apps) and AElement (for Android apps).  These two classes provide exactly the same functionality, but abstract away slight differences in implementation btween the platforms.
+There are two different types of element made available in the gem, IElement (for iOS apps) and AElement (for Android apps).  These two classes provide exactly the same functionality, but abstract away slight differences in implementation between the platforms.
 
-The constructors of both classes take a calabash query string as their only argument. More information about the Calabash query syntax can be found [here](https://github.com/calabash/calabash-android/wiki/05-Query-Syntax)
+The constructors of both classes take a Calabash query string as their only argument. More information about the Calabash query syntax can be found [here](https://github.com/calabash/calabash-android/wiki/05-Query-Syntax).
 
 ###For Android:
-To define elements for an android app:
+To define elements for an Android app:
 ```
 require 'CalabashPageObjects'
 class PageObjectClass
@@ -36,8 +36,8 @@ class PageObjectClass
 ...
 ```
 
-##iOS
-To define elements for an android app:
+###iOS
+To define elements for an iOS app:
 ```
 require 'CalabashPageObjects'
 class PageObjectClass
@@ -54,29 +54,49 @@ Both AElement and IElement have the same methods.  All of the methods take optio
 
 Some examples:
 
-The AElement @my_element has a method called prod which will tap it.  It can accept values for the timeout for the element to appear, whether the element you want is inside a parent element and whether the element is in a webview.  The defaults for these values are as follows
+The AElement @my_element has a method called 'prod' which will tap it.  It can accept values for the timeout for the element to appear, whether the element you want is inside a parent element and whether the element is in a webview. The defaults for these values are as follows
 ```
 timeout: 1
 parent: nil
 webview: false
 ```
-so to run the method for an element that should be visible inside of 1 second, that is not inside a parent element and is not inside a webview, the defaults can be used.
+so if the defaults are suitable then the prod method can be called with no arguments.
 
 `@my_element.prod`
 
-but to run the method for an element that should be present inside of 10 seconds and is in a webview some defaults need to be overridden.
+but to run the method in a situation where the defaults are not suitable they can be overridden as follows.
 
 `@my_element.prod(timeout: 10, webview: true)`
 
 #####Shorthand
 As in most cases the only default overridden will be a timeout there is a shorthad for doing this.  If the only argument passed in is an integer or float, then it is assumed that it is a timeout and all other arguments are left as default.
 
-E.g.
-`@my_element.prod(15)`
-is equivalent to 
-`@my_element.prod(timeout:15)`
+###Parent elements
+Most of the generated methods contain optional functionality to search the screen for your element.  This is useful in cases where your element may not be visible on the screen.  By default Calabash scrolls down the first scrollable view in the hierarchy, which isn't always the required behaviour.  In these cases it is necessary to specify the parent element that you want to scroll through to find your element.
 
-###Generated Methods
+For example the 'prod' method will scroll through the screen to find your element and then tap it.  To make Calabash scroll through a specific scrollable view you can pass a Calabash query string locator for that scroll view element as an argument.
+
+`@my_element.prod(parent: "* text:'a locator'")`
+
+However, it is not good practice to use hard coded strings any more than necessary.  To assist with this, a 'locator' attritube is provided to return the Calabash query string for an element.  This means that the parent element that you want to scroll through can be defined in the same way as all of your other elements.
+
+e.g.
+```
+require 'CalabashPageObjects'
+class PageObjectClass
+
+  def initialize
+    @my_element = IElement.new("* text:'calabash-locator'")
+    @my_parent_element = IElement.new("* id:'scroll view id'")
+  end
+  
+  def tap_my_element
+    @my_element.prod(parent: @my_parent_element.locator)
+  end
+...
+```
+
+###Methods (for iOS and Android)
 
 ####element_name_when_present
 Waits for an element to be present on the screen.
@@ -166,17 +186,5 @@ Will return the calabash query string that was provided when the element was def
 ######Args
 This method doesn't take any options.
 
-###Parent elements
-Most of the generated methods contain optional functionality to search the screen for your element.  This is useful in cases where your element may not be visible on the screen.  By default calabash scrolls down the first scrollable element that it finds, which isn't always the required functionality.  In these cases it is necessary to specify the parent element that you want to scroll through to find your element.
-
-For example the `touch_ELEMENT_NAME` method will scroll through the screen to find your element and then tap it.  To make calabash scroll through a non default scrollable view you can pass a calabash query string as an argument.
-
-`touch_ELEMENT_NAME(parent: action_bar_locator)`
-
-######Best practice
-In the example above, rather than passing in the calabash locator as a hardcoded string (e.g. "* text:'Hello'"), the ELEMENT_NAME_locator method has been used.  It is best practice not to have hardcoded strings strewn througout your page objects.  To achieve this you should define the parent object in the same way as your other elements (`element(:action_bar, "* text:'Hello'")`)and use the ELEMENT_NAME_locator method to return the string.
-
 ##Logging
 If a constant called `CPO_LOGGING` has been set to true, additional logging information will be printed to the console as methods are being executed.  By default it is initialised to false.
-
-
