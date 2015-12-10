@@ -1,4 +1,4 @@
-#calabash-page-objects
+#CalabashPageObjects
 =====================
 
 The calabash page object gem provides a way to define on-screen elements in your application. These elements then have methods defined to make interacting with them easier and more consistent across iOS and Android.
@@ -72,13 +72,13 @@ but to run the method in a situation where the defaults are not suitable they ca
 As in most cases the only default overridden will be a timeout there is a shorthad for doing this.  If the only argument passed in is an integer or float, then it is assumed that it is a timeout and all other arguments are left as default.
 
 ###Parent elements
-Most of the generated methods contain optional functionality to search the screen for your element.  This is useful in cases where your element may not be visible on the screen.  By default Calabash scrolls down the first scrollable view in the hierarchy, which isn't always the required behaviour.  In these cases it is necessary to specify the parent element that you want to scroll through to find your element.
+Most of the generated methods contain optional functionality to search the screen for your element.  This is useful in cases where your element may not be visible on the screen.  By default, Calabash scrolls down the first scrollable view in the hierarchy, which isn't always the required behaviour.  In these cases it is necessary to specify the parent element that you want to scroll through to find your element.
 
 For example the 'prod' method will scroll through the screen to find your element and then tap it.  To make Calabash scroll through a specific scrollable view you can pass a Calabash query string locator for that scroll view element as an argument.
 
 `@my_element.prod(parent: "* text:'a locator'")`
 
-However, it is not good practice to use hard coded strings any more than necessary.  To assist with this, a 'locator' attritube is provided to return the Calabash query string for an element.  This means that the parent element that you want to scroll through can be defined in the same way as all of your other elements.
+However, it is not good practice to use hardcoded strings any more than necessary.  To assist with this, a 'locator' attritube is provided to return the Calabash query string for an element.  This means that the parent element that you want to scroll through can be defined in the same way as all of your other elements.
 
 e.g.
 ```
@@ -95,6 +95,7 @@ class PageObjectClass
   end
 ...
 ```
+Note: passing in an element rather than its locator will not work at present.
 
 ###Methods (for iOS and Android)
 
