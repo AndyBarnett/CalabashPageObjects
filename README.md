@@ -52,55 +52,9 @@ class HomeScreen
 ...
 ```
 
-#Methods
+#Methods (for iOS and Android)
 
 Both AElement and IElement have the same methods. All of the methods take options as a hash. However, many of the methods have defaults set for some of their arguments and in many cases these won't need to be changed.
-
-Some examples:
-
-The AElement @my_element has a method called 'prod' which will tap it. It can accept values for the timeout for the element to appear, a secondary 'parent' element that your element lives inside, and whether the element is in a webview. The defaults for these values are as follows:
-```
-timeout: 1
-parent: nil
-webview: false
-```
-so if the defaults are suitable then the prod method can be called with no arguments:
-`@my_element.prod`
-
-but to run the method in a situation where the defaults are not suitable, you can override as many as you like. In this example we override timeout and webview, but not parent:
-`@my_element.prod(timeout: 10, webview: true)`
-
-#####Shorthand for timeout
-As in most cases, the only default that will be overridden is the timeout. There is a shorthand implemented especially for doing this. If the only argument passed in is an integer or float, then it is assumed that it is a timeout and all other arguments are left as default:
-`@my_element.prod(10)`
-
-###Parent elements
-Most of the generated methods contain optional functionality to search the screen for your element.  This is useful in cases where your element may not be visible on the screen.  By default, Calabash scrolls down the first scrollable view in the hierarchy to look for your element, which isn't always the required behaviour.  In these cases, it is necessary to specify the parent element that you want to scroll through to find your element.
-
-For example the 'prod' method will scroll through the screen to find your element and then tap it.  To make Calabash scroll through a specific scrollable view you can pass a Calabash query string locator for that scroll view element as an argument.
-
-`@my_element.prod(parent: "* id:'my_list_container'")`
-
-However, it is not good practice to use hardcoded strings any more than necessary.  To assist with this, a 'locator' attritute is provided to return the Calabash query string for an element.  This means that the parent element that you want to scroll through can be defined in the same way as all of your other elements.
-
-e.g.
-```
-require 'CalabashPageObjects'
-class PageObjectClass
-
-  def initialize
-    @my_element = IElement.new("* id:'search_button'")
-    @my_parent_element = IElement.new("* id:'my_list_container'")
-  end
-  
-  def tap_my_element
-    @my_element.prod(parent: @my_parent_element.locator)
-  end
-...
-```
-Note: passing in an element for 'parent' rather than its locator will not work at present.
-
-#Methods (for iOS and Android)
 
 ###screen_query
 Queries the current screen using the elements locator.
@@ -177,7 +131,7 @@ Can take an argument for webview. Default is false.
 ```
 Value is is the text you want to enter. It should be the first parameter passed in.
 
-#####Examples
+#####Example
 ```
 @my_element.input('email@email.com', parent: @form_scrollview)
 ```
@@ -243,3 +197,48 @@ Can take an argument for webview. Default is false.
 @my_element.text
 ```
 Will scroll to find the element after the timeout has elapsed.
+
+#Parameter usage
+###Some examples:
+
+The AElement @my_element has a method called 'prod' which will tap it. It can accept values for the timeout for the element to appear, a secondary 'parent' element that your element lives inside, and whether the element is in a webview. The defaults for these values are as follows:
+```
+timeout: 1
+parent: nil
+webview: false
+```
+so if the defaults are suitable then the prod method can be called with no arguments:
+`@my_element.prod`
+
+but to run the method in a situation where the defaults are not suitable, you can override as many as you like. In this example we override timeout and webview, but not parent:
+`@my_element.prod(timeout: 10, webview: true)`
+
+###Shorthand for timeout
+As in most cases, the only default that will be overridden is the timeout. There is a shorthand implemented especially for doing this. If the only argument passed in is an integer or float, then it is assumed that it is a timeout and all other arguments are left as default:
+`@my_element.prod(10)`
+
+###Parent elements
+Most of the generated methods contain optional functionality to search the screen for your element.  This is useful in cases where your element may not be visible on the screen.  By default, Calabash scrolls down the first scrollable view in the hierarchy to look for your element, which isn't always the required behaviour.  In these cases, it is necessary to specify the parent element that you want to scroll through to find your element.
+
+For example the 'prod' method will scroll through the screen to find your element and then tap it.  To make Calabash scroll through a specific scrollable view you can pass a Calabash query string locator for that scroll view element as an argument.
+
+`@my_element.prod(parent: "* id:'my_list_container'")`
+
+However, it is not good practice to use hardcoded strings any more than necessary.  To assist with this, a 'locator' attritute is provided to return the Calabash query string for an element.  This means that the parent element that you want to scroll through can be defined in the same way as all of your other elements.
+
+e.g.
+```
+require 'CalabashPageObjects'
+class PageObjectClass
+
+  def initialize
+    @my_element = IElement.new("* id:'search_button'")
+    @my_parent_element = IElement.new("* id:'my_list_container'")
+  end
+  
+  def tap_my_element
+    @my_element.prod(parent: @my_parent_element.locator)
+  end
+...
+```
+Note: passing in an element for 'parent' rather than its locator will not work at present.
