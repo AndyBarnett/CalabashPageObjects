@@ -111,32 +111,44 @@ This will return an array of hashes of each element on the screen that matches y
 
 ###when_visible
 Waits for an element to be present.
+####Args
 Can take an argument for timeout. Default is 10 seconds to wait until the element is present. As soon as it is present, the method will return.
+
 Use this method to make sure a particular screen/element has loaded before continuing the test run. See 'present?' below for assertions.
 ```
 @my_element.when_visible(30)
 ```
 
 ###when_not_visible
-Does the opposite of when_visible. It will wait a full 10 seconds for the element to not be on the screen, unless you pass in your own timeout.
+Does the opposite of when_visible. 
+####Args
+It will wait a full 10 seconds for the element to not be on the screen, unless you pass in your own timeout.
 
 ```
 @my_element.when_not_visible(30)
 ```
 ###present?
 Checks to see if the element is present. Returns a boolean. Can optionally scroll in search of the element.
-Can take an argument for timeout. Default is 0.1. The method will wait this many seconds for the element to be present on the screen.
+#####Args
+```
+Can take an argument for timeout. Default is 0.1.
 Can take an argument for parent. Default is nil
 Can take an argument for webview. Default is false
-Can take an argument for scroll. Default is false. If scroll is set to true, the method will wait 'timeout' seconds for the element to be present, and if it is not, it will automatically start scrolling to find it. It will return true if the element is found during this time, and it will return false if it has reached the bottom of the screen and it hasn't found the element anywhere.
+Can take an argument for scroll. Default is false. 
+```
 
+The method will wait 'timeout' seconds for the element to be present on the screen.
+
+If 'scroll' is set to true, the method will wait 'timeout' seconds for the element to be present, and if it is not, it will automatically start scrolling to find it. It will return true if the element is found during this time and it will return false if it has reached the bottom of the screen and it hasn't found the element anywhere.
+
+#####Example
 ```
 @my_element.present?(timeout: 2, scroll: true)
 ```
 
 ###prod
 This is probably the method you'll use the most. It is our method for tapping the element. We made sure that we used new methods names so that you can still use the regular Calabash Operations methods as well as ours.
-
+####Args
 Can take an argument for timeout.  Default is 1 second. It will wait this long for an element to be present before scrolling to find it. The beauty of this method is you can now both wait for an element to be present and tap it using the same method. Just include a float for however long you want to wait for it as the timout!
 Can take an argument for parent. Default is nil.
 Can take an argument for webview. Default is false.
@@ -147,6 +159,7 @@ Can take an argument for webview. Default is false.
 
 ###input
 Clears the text in an element and then enters the text that is passed in.
+####Args
 Always takes a string argument for 'value'. This is the text you want to enter. It should be the first parameter passed in.
 Can take an argument for timeout. Default is 1 second. Works in the same way as the 'prod' method.
 Can take an argument for parent. Default is nil.
