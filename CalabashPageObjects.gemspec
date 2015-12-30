@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'CalabashPageObjects'
   spec.version       = CalabashPageObjects::VERSION
   spec.authors       = ['Alan Nichols and Andrew Barnett']
-  spec.email         = ['alan.nichols@just-eat.com']
+  spec.email         = ['alan.nichols@outlook.com']
   spec.summary       = 'Page Object framework for calabash'
   spec.description   = 'Page Object frameworks for calabash on iOS and Android'
   spec.homepage      = ''
