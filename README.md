@@ -1,5 +1,4 @@
 #CalabashPageObjects
-=====================
 
 ##Automatic waiting for element presence:
 No more lines of code waiting for an element to be present before clicking it.
