@@ -115,7 +115,7 @@ class ElementBase
 
     find(opts[:timeout], opts[:parent], opts[:webview])
     puts "Checking status of checkbox element with locator #{@locator}." if CPO_LOGGING
-    query("#{@locator}", :isChecked)
+    query("#{@locator}", :isChecked)[0]
   end
 
   # Retrieve the text attribute of an element.
