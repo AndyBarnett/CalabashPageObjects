@@ -1,4 +1,4 @@
-#CalabashPageObjects
+#calabash-page-objects
 
 ##Automatic waiting for element presence:
 No more lines of code waiting for an element to be present before clicking it.
@@ -9,7 +9,7 @@ The size of the phone no longer matters! If your element isn't immediately prese
 ##Easy declaration of hierarchical parent views:
 Specify the correct list view or webview container that the element lives in as a simple parameter, so CPO knows which one to scroll to find your element.
 
-=====================
+#Overview
 The Calabash Page Object ruby gem provides a way to define on-screen elements in your application. These elements then have methods defined to make interacting with them in a Calabash test framework easier and more consistent across iOS and Android.
 
 The methods can be used whether the application is on iOS or Android.
@@ -40,7 +40,7 @@ The constructors of both classes take a Calabash query string as their only argu
 ###For Android:
 To define elements for an Android app:
 ```
-require 'CalabashPageObjects'
+require 'calabash-page-objects'
 class HomeScreen
 
   def initialize
@@ -52,7 +52,7 @@ class HomeScreen
 ###iOS
 To define elements for an iOS app:
 ```
-require 'CalabashPageObjects'
+require 'calabash-page-objects'
 class HomeScreen
 
   def initialize
@@ -237,7 +237,7 @@ However, it is not good practice to use hardcoded strings any more than necessar
 
 e.g.
 ```
-require 'CalabashPageObjects'
+require 'calabash-page-objects'
 class PageObjectClass
 
   def initialize
