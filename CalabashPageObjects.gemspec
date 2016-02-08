@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'CalabashPageObjects/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'CalabashPageObjects'
+  spec.name          = 'calabash-page-objects'
   spec.version       = CalabashPageObjects::VERSION
   spec.authors       = ['Alan Nichols and Andrew Barnett']
   spec.email         = ['alan.nichols@outlook.com']

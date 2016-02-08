@@ -1,4 +1,4 @@
-require 'CalabashPageObjects'
+require 'calabash-page-objects'
 # Page object for tests.
 class AndroidPageObjectClass
   # rubocop:disable CyclomaticComplexity

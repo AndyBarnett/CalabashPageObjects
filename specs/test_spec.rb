@@ -5,7 +5,7 @@ require_relative 'ios_page_object'
 include RSpec
 extend RSpec::Matchers
 
-RSpec.describe CalabashPageObjects do
+RSpec.describe calabash-page-objects do
   it 'android has inherited methods' do
     android_page_object = AndroidPageObjectClass.new
     android_page_object.try_all_methods

@@ -1,6 +1,6 @@
-# Contributing to CalabashPageObjects
+# Contributing to calabash-page-objects
 
-♥ CalabashPageObjects and want to get involved?
+♥ calabash-page-objects and want to get involved?
 Great! There are plenty of ways you can help!
 
 If you find a bug, have a feature request or even want to contribute an enhancement or fix, please follow the below guidelines so that we can help you out and/or get your code merged quickly.
@@ -8,7 +8,7 @@ If you find a bug, have a feature request or even want to contribute an enhancem
 ## If you find what looks like a bug:
 
 * Check the [GitHub issue tracker](http://github.com/justeat/CalabashPageObjects/issues/) to see if anyone else has reported the issue.
-* Make sure you are using the latest version of CalabashPageObjects
+* Make sure you are using the latest version of calabash-page-objects
 * If you are still having an issue, create an issue including:
   * Information you will need to reproduce and diagnose the problem
 
