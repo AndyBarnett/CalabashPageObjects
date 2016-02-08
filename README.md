@@ -20,15 +20,15 @@ Defining an element in Android `AElement.new` (or `IElement.new` for iOS) will p
 
 ##Installing the gem
 ```
-gem install 'CalabashPageObjects'
+gem install 'calabash-page-objects'
 ```
 or add the following to your Gemfile if you use Bundler:
 ```
-gem 'CalabashPageObjects'
+gem 'calabash-page-objects'
 ```
 Then require it in your page object class:
 ```
-require 'CalabashPageObjects'
+require 'calabash-page-objects'
 ```
 
 ##Defining Elements
