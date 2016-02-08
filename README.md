@@ -1,6 +1,15 @@
 #CalabashPageObjects
-=====================
 
+##Automatic waiting for element presence:
+No more lines of code waiting for an element to be present before clicking it.
+
+##Automatic scrolling:
+The size of the phone no longer matters! If your element isn't immediately present, CPO will scroll to find it for you, and stop when it reaches the bottom of the view.
+
+##Easy declaration of hierarchical parent views:
+Specify the correct list view or webview container that the element lives in as a simple parameter, so CPO knows which one to scroll to find your element.
+
+=====================
 The Calabash Page Object ruby gem provides a way to define on-screen elements in your application. These elements then have methods defined to make interacting with them in a Calabash test framework easier and more consistent across iOS and Android.
 
 The methods can be used whether the application is on iOS or Android.
