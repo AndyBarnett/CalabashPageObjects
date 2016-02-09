@@ -19,6 +19,7 @@ Defining an element in Android `AElement.new` (or `IElement.new` for iOS) will p
 #Getting Started
 
 ##Installing the gem
+[![Gem Version](https://badge.fury.io/rb/calabash-page-objects.svg)](https://badge.fury.io/rb/calabash-page-objects)
 ```
 gem install 'calabash-page-objects'
 ```
