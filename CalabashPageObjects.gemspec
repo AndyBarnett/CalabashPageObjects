@@ -7,11 +7,11 @@ Gem::Specification.new do |spec|
   spec.name          = 'calabash-page-objects'
   spec.version       = CalabashPageObjects::VERSION
   spec.authors       = ['Alan Nichols and Andrew Barnett']
-  spec.email         = ['alan.nichols@outlook.com']
-  spec.summary       = 'Page Object framework for calabash'
-  spec.description   = 'Page Object frameworks for calabash on iOS and Android'
-  spec.homepage      = ''
-  spec.license       = 'MIT'
+  spec.email         = ['alan.nichols@outlook.com', 'bandy1@live.co.uk']
+  spec.summary       = 'Page Object framework for Calabash'
+  spec.description   = 'Page Object frameworks for Calabash on iOS and Android'
+  spec.homepage      = 'https://github.com/justeat/CalabashPageObjects'
+  spec.license       = 'Eclipse Public License v1.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'calabash-android', '>=0.5.14'
   spec.add_development_dependency 'calabash-cucumber'
-  spec.add_development_dependency 'geminabox'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rspec-expectations'
 end
