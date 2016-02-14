@@ -236,7 +236,7 @@ For example the 'prod' method will scroll through the screen to find your elemen
 `@my_element.prod(parent: "* id:'my_list_container'")`
 
 However, it is not good practice to use hardcoded strings any more than necessary.  To assist with this, a 'locator' attritute is provided to return the Calabash query string for an element.  This means that the parent element that you want to scroll through can be defined in the same way as all of your other elements.
-
+ 
 e.g.
 ```
 require 'calabash-page-objects'
