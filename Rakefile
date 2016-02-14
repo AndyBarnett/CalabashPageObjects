@@ -4,6 +4,10 @@ task :build do
 	system 'gem build CalabashPageObjects.gemspec'
 end
 
+task :test do
+	system 'rspec specs/test_spec.rb'
+end
+
 task :push, [:auth] do |t, args|
 	task(:build).execute
 	  system "curl --data-binary @calabash-page-objects-#{CalabashPageObjects::VERSION}.gem \
