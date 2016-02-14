@@ -8,3 +8,4 @@ rvm:
  - rbx
  
  script: bundle exec rake build
+ 
