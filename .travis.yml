@@ -1,8 +1,10 @@
 language: ruby
+script:
+ - bundle exec rake test
+ - bundle exec rake push[$auth]
 rvm:
- - "1.8.7"
- - "1.9.2"
  - "1.9.3"
  - "2.0.0"
  - "2.3.0"
  - rbx
+ 
