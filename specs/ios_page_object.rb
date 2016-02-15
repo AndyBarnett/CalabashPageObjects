@@ -1,4 +1,4 @@
-require 'calabash-page-objects'
+require_relative '../lib/CalabashPageObjects'
 # Page object for tests.
 class IosPageObjectClass
   # rubocop:disable CyclomaticComplexity
