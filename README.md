@@ -29,7 +29,7 @@ gem 'calabash-page-objects'
 ```
 Then require it in your page object class:
 ```
-require 'calabash-page-objects'
+require 'CalabashPageObjects'
 ```
 
 ##Defining Elements
